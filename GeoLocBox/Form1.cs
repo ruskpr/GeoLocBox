@@ -41,9 +41,10 @@ namespace GeoLocBox
                 this.BackColor = Color.White;
             }
 
-            SQLiteDataLayer dl = new SQLiteDataLayer("Data source =Z:/sqlite/myDB.db");
+            //SQLiteDataLayer dl = new SQLiteDataLayer("Data source = F:/FALL/ITEC 210 - Sytem Analysis/GropLocBox/groupBoxDB.db");
+            SQLiteDataLayer dl = new SQLiteDataLayer("Data source=c:/Users/leila.noval/source/repos/GeoLocBox/GeoLocBox/Database/groupBoxDb.db");
 
-            dl.InsertRecord("hello", DateTime.Now);
+            dl.InsertRecord("this is leila");
         }
 
         private void Button1_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)

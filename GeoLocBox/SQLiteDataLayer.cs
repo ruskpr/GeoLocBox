@@ -19,13 +19,13 @@ namespace GeoLocBox
             this.connectionString = connectionstring;
         }
 
-        public void InsertRecord(string test_data, DateTime record_date)
+        public void InsertRecord(string test_data)
         {
             using (SqliteConnection conn = new SqliteConnection(connectionString))
             {
-                cmd = new SqliteCommand($"insert into TestTable (TestName) " +
-                    $"values ('{test_data}'", conn);
                 conn.Open();
+                cmd = new SqliteCommand($"insert into TestTable (TestName) " +
+                    $"values ('{test_data}')", conn);
                 // execute for no results, create, update, delete
                 cmd.ExecuteNonQuery();
             }

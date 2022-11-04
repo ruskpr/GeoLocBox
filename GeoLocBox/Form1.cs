@@ -42,7 +42,7 @@ namespace GeoLocBox
             }
 
             //SQLiteDataLayer dl = new SQLiteDataLayer("Data source = F:/FALL/ITEC 210 - Sytem Analysis/GropLocBox/groupBoxDB.db");
-            SQLiteDataLayer dl = new SQLiteDataLayer("Data source=c:/Users/leila.noval/source/repos/GeoLocBox/GeoLocBox/Database/groupBoxDb.db");
+            SQLiteDataLayer dl = new SQLiteDataLayer("Data source=../../../Database/groupBoxDb.db");
 
             dl.InsertRecord("this is leila");
             MessageBox.Show("Test");

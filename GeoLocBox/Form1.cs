@@ -46,6 +46,7 @@ namespace GeoLocBox
 
             dl.InsertRecord("this is leila");
             MessageBox.Show("Test");
+            MessageBox.Show("TestFORREAL");
         }
 
         private void Button1_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)

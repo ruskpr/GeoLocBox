@@ -45,6 +45,7 @@ namespace GeoLocBox
             SQLiteDataLayer dl = new SQLiteDataLayer("Data source=c:/Users/leila.noval/source/repos/GeoLocBox/GeoLocBox/Database/groupBoxDb.db");
 
             dl.InsertRecord("this is leila");
+            MessageBox.Show("Test");
         }
 
         private void Button1_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)

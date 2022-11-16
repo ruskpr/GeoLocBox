@@ -59,6 +59,7 @@ namespace GeoLocBox
             //{
             //    this.BackColor = Color.White;
             //}
+            //test
         }
     }
 }

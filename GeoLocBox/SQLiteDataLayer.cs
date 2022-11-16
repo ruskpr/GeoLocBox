@@ -30,8 +30,8 @@ namespace GeoLocBox
 
                 if (lat != 0 && lng != 0 && alt != 0)
                 cmd.ExecuteNonQuery();
-                else
-                            MessageBox.Show("values are 0");
+                //else
+                //            MessageBox.Show("values are 0");
             }
         }
 

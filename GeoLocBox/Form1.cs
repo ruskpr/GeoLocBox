@@ -18,7 +18,8 @@ namespace GeoLocBox
         private double longtitude;
         private double latitude;
 
-
+        private TemperatureSensor temp = null;
+        private double temperature;
 
         public Form1()
         {
@@ -31,8 +32,12 @@ namespace GeoLocBox
             gps.Attach += Gps_Attach;
             gps.Detach += Gps_Detach;
             gps.Error += Gps_Error; ;
-
             gps.PositionChange += Gps_PositionChange;
+
+            temp.Attach += Temp_Attach;
+            temp.Detach += Temp_Detach;
+            temp.TemperatureChange += Temp_TemperatureChange;
+
             //try
             //{
             //    gps.Open();
@@ -57,6 +62,21 @@ namespace GeoLocBox
             btnRed.IsHubPortDevice = true;
             btnRed.StateChange += BtnRed_StateChange;
             btnRed.Open(1000);
+        }
+
+        private void Temp_TemperatureChange(object sender, TemperatureSensorTemperatureChangeEventArgs e)
+        {
+            temperature = Convert.ToDouble(e.Temperature.ToString());
+        }
+
+        private void Temp_Detach(object sender, DetachEventArgs e)
+        {
+            
+        }
+
+        private void Temp_Attach(object sender, AttachEventArgs e)
+        {
+            TemperatureSensor attachedDevice = (TemperatureSensor)sender;
         }
 
         private void Gps_Error(object sender, Phidget22.Events.ErrorEventArgs e)
@@ -102,16 +122,16 @@ namespace GeoLocBox
             if (gps.Attached)
             {
              dl.InsertRecord(latitude,longtitude,altitude,DateTime.Now.ToString());
-                MessageBox.Show("attached");
+                //MessageBox.Show("attached");
                 //gps.DateAndTime.ToLocalTime();
                 //gps.Longitude.ToString();
                 //gps.Latitude.ToString();
                 //gps.Altitude.ToString();
                 string gpsText = gps.DateAndTime.ToLocalTime().ToString();
-                MessageBox.Show(gpsText);
-                MessageBox.Show(longtitude.ToString());
-                MessageBox.Show(altitude.ToString());
-                MessageBox.Show(latitude.ToString());
+                //MessageBox.Show(gpsText);
+                //MessageBox.Show(longtitude.ToString());
+                //MessageBox.Show(altitude.ToString());
+                //MessageBox.Show(latitude.ToString());
 
 
 
@@ -131,6 +151,10 @@ namespace GeoLocBox
             //    this.BackColor = Color.White;
             //}
             //test
+            if (temp.Attached)
+            {
+
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

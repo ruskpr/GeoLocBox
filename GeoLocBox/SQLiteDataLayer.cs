@@ -19,17 +19,22 @@ namespace GeoLocBox
             this.connectionString = connectionstring;
         }
 
-        public void InsertRecord(string test_data)
+        public void InsertRecord(double lat, double lng, double alt, string date)
         {
+
             using (SqliteConnection conn = new SqliteConnection(connectionString))
             {
                 conn.Open();
-                cmd = new SqliteCommand($"insert into TestTable (TestName) " +
-                    $"values ('{test_data}')", conn);
-                // execute for no results, create, update, delete
-                cmd.ExecuteNonQuery();
+                cmd = new SqliteCommand($"insert into Location " +
+                    $"values ('{lat}', '{lng}', '{alt}', '{date})", conn);
+
+                if (lat != 0 && lng != 0 && alt != 0)
+                    cmd.ExecuteNonQuery();
+                else
+                    MessageBox.Show("values are 0");
             }
         }
+
         public void DeleteRecord(int id)
         {
             //using (SqliteConnection conn = new SqliteConnection(connectionString))

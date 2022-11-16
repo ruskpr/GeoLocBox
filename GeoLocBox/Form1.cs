@@ -98,10 +98,10 @@ namespace GeoLocBox
             //SQLiteDataLayer dl = new SQLiteDataLayer("Data source = F:/FALL/ITEC 210 - Sytem Analysis/GropLocBox/groupBoxDB.db");
             SQLiteDataLayer dl = new SQLiteDataLayer("Data source=../../../Database/groupBoxDb.db");
 
-            //dl.InsertRecord("Nov-16-22");
 
             if (gps.Attached)
             {
+             dl.InsertRecord(latitude,longtitude,altitude,DateTime.Now.ToString());
                 MessageBox.Show("attached");
                 //gps.DateAndTime.ToLocalTime();
                 //gps.Longitude.ToString();

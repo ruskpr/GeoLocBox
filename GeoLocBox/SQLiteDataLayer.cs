@@ -28,10 +28,11 @@ namespace GeoLocBox
                 cmd = new SqliteCommand($"insert into Location " +
                     $"values ('{lat}', '{lng}', '{alt}', '{date}')", conn);
 
+
                 if (lat != 0 && lng != 0 && alt != 0)
                     cmd.ExecuteNonQuery();
-                //else
-                //            MessageBox.Show("values are 0");
+
+
             }
         }
 

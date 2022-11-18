@@ -18,7 +18,7 @@ namespace GeoLocBox
         private double longtitude;
         private double latitude;
 
-        private TemperatureSensor temp = null;
+        private TemperatureSensor temp = new TemperatureSensor();
         private double temperature;
 
         public Form1()
@@ -26,8 +26,7 @@ namespace GeoLocBox
             InitializeComponent();
             this.BackColor = Color.White;
             gps = new GPS();
-            //gps = openCh ?? openArgs.makeChannel<GPS>();
-            //errorBox = new ErrorEventBox(this);
+          
 
             gps.Attach += Gps_Attach;
             gps.Detach += Gps_Detach;
@@ -38,11 +37,7 @@ namespace GeoLocBox
             temp.Detach += Temp_Detach;
             temp.TemperatureChange += Temp_TemperatureChange;
 
-            //try
-            //{
-            //    gps.Open();
-            //}
-            //catch (PhidgetException ex) { MessageBox.Show(ex.Message); }
+            
             gps.Open();
 
             // green
@@ -122,16 +117,9 @@ namespace GeoLocBox
             if (gps.Attached)
             {
              dl.InsertRecord(latitude,longtitude,altitude,DateTime.Now.ToString());
-                //MessageBox.Show("attached");
-                //gps.DateAndTime.ToLocalTime();
-                //gps.Longitude.ToString();
-                //gps.Latitude.ToString();
-                //gps.Altitude.ToString();
-                string gpsText = gps.DateAndTime.ToLocalTime().ToString();
-                //MessageBox.Show(gpsText);
-                //MessageBox.Show(longtitude.ToString());
-                //MessageBox.Show(altitude.ToString());
-                //MessageBox.Show(latitude.ToString());
+                
+                //string gpsText = gps.DateAndTime.ToLocalTime().ToString();
+              
 
 
 
@@ -142,15 +130,7 @@ namespace GeoLocBox
 
         private void Button1_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)
         {
-            //if (this.BackColor == Color.White)
-            //{
-            //    this.BackColor = Color.Green;
-            //}
-            //else
-            //{
-            //    this.BackColor = Color.White;
-            //}
-            //test
+         
             if (temp.Attached)
             {
 

@@ -64,11 +64,7 @@ namespace GeoLocBox
 
         
 
-        private void Gps_Attach(object sender, Phidget22.Events.AttachEventArgs e)
-        {
-            GPS attached = (GPS)sender;
-
-        }
+        
 
         private void BtnRed_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)
         {

@@ -26,6 +26,7 @@ namespace GeoLocBox
             gps.PositionChange += Gps_PositionChange;
 
             gps.Open();
+            //test
         }
         
         public void SendDataToDB()

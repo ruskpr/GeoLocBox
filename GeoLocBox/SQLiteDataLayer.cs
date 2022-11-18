@@ -19,7 +19,7 @@ namespace GeoLocBox
             this.connectionString = connectionstring;
         }
 
-        public void InsertRecord(double lat, double lng, double alt, string date)
+        public void InsertLocationRecord(double lat, double lng, double alt, string date)
         {
 
             using (SqliteConnection conn = new SqliteConnection(connectionString))
@@ -29,7 +29,7 @@ namespace GeoLocBox
                     $"values ('{lat}', '{lng}', '{alt}', '{date}')", conn);
 
                 //if (lat != 0 && lng != 0 && alt != 0)
-                cmd.ExecuteNonQuery(
+                cmd.ExecuteNonQuery();
                 //else
                 //            MessageBox.Show("values are 0");
             }

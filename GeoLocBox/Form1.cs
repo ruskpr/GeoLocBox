@@ -11,12 +11,9 @@ namespace GeoLocBox
     {
         DigitalInput btnGreen = null;
         DigitalInput btnRed = null;
-        
-        private GPS gps;
-        //private ErrorEventBox errorBox;
-        private double altitude;
-        private double longtitude;
-        private double latitude;
+        MyGPS myGPS;
+
+
 
         private TemperatureSensor temp = new TemperatureSensor();
         private double temperature;
@@ -25,20 +22,11 @@ namespace GeoLocBox
         {
             InitializeComponent();
             this.BackColor = Color.White;
-            gps = new GPS();
-          
-
-            gps.Attach += Gps_Attach;
-            gps.Detach += Gps_Detach;
-            gps.Error += Gps_Error; ;
-            gps.PositionChange += Gps_PositionChange;
+            myGPS = new MyGPS();
 
             temp.Attach += Temp_Attach;
             temp.Detach += Temp_Detach;
             temp.TemperatureChange += Temp_TemperatureChange;
-
-            
-            gps.Open();
 
             // green
             btnGreen = new DigitalInput();
@@ -74,24 +62,7 @@ namespace GeoLocBox
             TemperatureSensor attachedDevice = (TemperatureSensor)sender;
         }
 
-        private void Gps_Error(object sender, Phidget22.Events.ErrorEventArgs e)
-        {
-            //errorBox.addMessage(e.Description);
-
-        }
-
-        private void Gps_PositionChange(object sender, Phidget22.Events.GPSPositionChangeEventArgs e)
-        {
-            longtitude = e.Longitude;
-            latitude = e.Latitude;
-            altitude = e.Altitude;
-        }
-
-        private void Gps_Detach(object sender, Phidget22.Events.DetachEventArgs e)
-        {
-            GPS detached = (GPS)sender;
-
-        }
+        
 
         private void Gps_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         {
@@ -102,27 +73,14 @@ namespace GeoLocBox
         private void BtnRed_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)
         {
             if (this.BackColor == Color.White)
-            {
                 this.BackColor = Color.Red;
-            }
             else
-            {
                 this.BackColor = Color.White;
-            }
 
-            //SQLiteDataLayer dl = new SQLiteDataLayer("Data source = F:/FALL/ITEC 210 - Sytem Analysis/GropLocBox/groupBoxDB.db");
-            SQLiteDataLayer dl = new SQLiteDataLayer("Data source=../../../Database/groupBoxDb.db");
+            // send coordinates to database on button press
+            myGPS.SendDataToDB();
 
-
-            if (gps.Attached)
-            {
-             dl.InsertLocationRecord(latitude,longtitude,altitude,DateTime.Now.ToString());
-                
-                //string gpsText = gps.DateAndTime.ToLocalTime().ToString();
-
-
-            }
-
+            //SQLiteDataLayer dl = new SQLiteDataLayer("Data source=../../../Database/groupBoxDb.db");
         }
 
         private void Button1_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)

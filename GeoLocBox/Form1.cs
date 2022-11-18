@@ -12,6 +12,7 @@ namespace GeoLocBox
         DigitalInput btnGreen = null;
         DigitalInput btnRed = null;
         MyGPS myGPS;
+        MyWeatherData MyWeatherData;
 
 
 
@@ -28,6 +29,7 @@ namespace GeoLocBox
             InitializeComponent();
             this.BackColor = Color.White;
             myGPS = new MyGPS();
+            MyWeatherData = new MyWeatherData();
 
             temp.Attach += Temp_Attach;
             temp.Detach += Temp_Detach;
@@ -44,6 +46,7 @@ namespace GeoLocBox
             btnGreen.IsHubPortDevice = true;
             //button1.StateChange += Button1_StateChange;
             btnGreen.StateChange += BtnGreen_StateChange;
+            
 
             btnGreen.Open(1000);
 
@@ -100,32 +103,15 @@ namespace GeoLocBox
         }
         private void BtnGreen_StateChange(object sender, DigitalInputStateChangeEventArgs e)
         {
-            humidity.Open(1000);
-            temp.Open(1000);
-            light.Open(1000);
+            
 
             if (this.BackColor == Color.White)
                 this.BackColor = Color.Green;
             else
                 this.BackColor = Color.White;
-            if (temp.Attached)
-            {
-                
-                MessageBox.Show("temp: " + temperature.ToString());
-            }
-            if(humidity.Attached)
-            {
-                MessageBox.Show("humidity: " + hum.ToString());
-
-            }
-            if (light.Attached)
-            {
-
-                MessageBox.Show("light: " + lum.ToString());
-            }
-            humidity.Close();
-            temp.Close();
-            light.Close();
+            MyWeatherData.RecordData();
+            
+           
         }
 
         private void Button1_StateChange(object sender, Phidget22.Events.DigitalInputStateChangeEventArgs e)

@@ -28,10 +28,21 @@ namespace GeoLocBox
                 cmd = new SqliteCommand($"insert into Location " +
                     $"values ('{lat}', '{lng}', '{alt}', '{date}')", conn);
 
-                //if (lat != 0 && lng != 0 && alt != 0)
                 cmd.ExecuteNonQuery();
-                //else
-                //            MessageBox.Show("values are 0");
+           
+            }
+        }
+        public void InsertWeatherRecord(double temp, double hum, double lum)
+        {
+
+            using (SqliteConnection conn = new SqliteConnection(connectionString))
+            {
+                conn.Open();
+                cmd = new SqliteCommand($"insert into Weather " +
+                    $"values ('{temp}', '{hum}', '{lum}', '{DateTime.Now.ToString()}')", conn);
+
+                cmd.ExecuteNonQuery();
+               
             }
         }
 

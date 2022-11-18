@@ -119,9 +119,6 @@ namespace GeoLocBox
              dl.InsertRecord(latitude,longtitude,altitude,DateTime.Now.ToString());
                 
                 //string gpsText = gps.DateAndTime.ToLocalTime().ToString();
-              
-
-
 
 
             }
